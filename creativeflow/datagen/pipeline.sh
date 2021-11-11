@@ -564,6 +564,11 @@ EOF
                         LN=$((1 + (RANDOM % NCOLORS)))
                         COLORS=$(head -n$LN $ABCV_COLORS | tail -n1 | awk -F'|' '{print $2}')
                     fi
+                    NCOLORS=$(wc -l $ABCV_COLORS | awk '{printf "%s", $1}')
+                    LN=$((1 + (RANDOM % NCOLORS)))
+                    COLORS=$(head -n$LN $ABCV_COLORS | tail -n1 | awk -F'|' '{print $2}')
+                    echo $RANDOM
+                    echo $COLORS
 
 
                     STYLE_INFO=$AUXDIR/shading${STY}_info.txt
