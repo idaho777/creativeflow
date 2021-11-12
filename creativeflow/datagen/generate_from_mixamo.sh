@@ -39,8 +39,8 @@ for f in ${SDIR}*.fbx; do
     FILENAME=$(basename -- $f)
     FILENAME=${FILENAME%.*}
 
-    CURRODIR="${ODIR}${FILENAME}/"
-    CURROBLEND="${CURRODIR}${FILENAME}.blend"
+    CURRODIR="${ODIR}${FILENAME}"
+    CURROBLEND="${CURRODIR}/${FILENAME}.blend"
     mkdir -p $CURRODIR
     
     # Create directory for $FILE
@@ -57,6 +57,11 @@ for f in ${SDIR}*.fbx; do
             -m flat\
             $CURROBLEND\
             $CURRODIR "--width=800 --height=800"
+
+    # if [[ $i -eq 5 ]]; then
+    #     break
+    # fi
+    ((i++))
 done
 
 # blender --background --python-exit-code 1 --factory-startup ${BLENDFILE} \
