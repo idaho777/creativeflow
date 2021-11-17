@@ -274,7 +274,9 @@ if __name__ == "__main__":
         print("CUDA DEVICES", cuda_devices)
         if len(cuda_devices) > 0:
             print("CUDA DEVICES", cuda_devices)
-            cuda_devices[0].use = True
+            print(bpy.context.user_preferences.addons['cycles'].preferences)
+            for i in range(len(cuda_devices)):
+                cuda_devices[i].use = True
             bpy.context.user_preferences.addons['cycles'].preferences.compute_device_type = 'CUDA'
 
         # Handle frame bounds ------------------------------------------------------
