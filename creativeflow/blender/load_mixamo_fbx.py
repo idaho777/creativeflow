@@ -66,9 +66,6 @@ if __name__ == "__main__":
     view_dim = 2 * ((cam.data.sensor_width/2) / cam.data.lens) * cam.location.length
     view_bounds = 0.8*view_dim
 
-    print(model.location)
-    print(model.scale)
-    print(model.dimensions)
     # Scale+translate model to fit within view box
     max_bbox_dim = max(model.dimensions.x, model.dimensions.y)
     scale_factor = view_bounds / max_bbox_dim
@@ -80,9 +77,6 @@ if __name__ == "__main__":
 
     # bpy.ops.object.transform_apply(location=True, scale=True)
 
-    print(model.location)
-    print(model.scale)
-    print(model.dimensions)
     # Save new blend file
     file_name = os.path.basename(args.fbx_file)
     file_name = os.path.splitext(file_name)[0]

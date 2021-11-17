@@ -52,7 +52,7 @@ for f in ${SDIR}*.fbx; do
             > $LOGFILE 2>&1
 
     # call pipeline with file name 
-    ./datagen/pipeline.sh -n 1 -s:0:1:2:3:4:5:7:8:9:10:11:\
+    ./datagen/pipeline.sh -n 1 -s:0:1:2:3:8:9:10:11:14:15:17:18\
             -L pen1\
             -m flat\
             $CURROBLEND\
@@ -64,11 +64,3 @@ for f in ${SDIR}*.fbx; do
     ((i++))
 done
 
-# blender --background --python-exit-code 1 --factory-startup ${BLENDFILE} \
-#         --python blender/camera_main_nerf.py --\
-#         --frame_source_dir=$SDIR\
-#         --frame_output_dir=$CAM_ODIR \
-#         --train_output_prefix=train\
-#         --test_output_prefix=test\
-#         --val_output_prefix=val\
-#         > $LOGFILE 2>&1
