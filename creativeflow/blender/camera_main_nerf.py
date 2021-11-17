@@ -149,8 +149,8 @@ if __name__ == "__main__":
 
     transform_test_json = os.path.join(args.frame_output_dir, "transforms_{}.json".format(args.test_output_prefix))
     with open(transform_test_json, 'w') as f:
-        json.dump(transform_train_dict, f)
+        json.dump(transform_test_dict, f)
 
     transform_test_json = os.path.join(args.frame_output_dir, "transforms_{}.json".format(args.val_output_prefix))
     with open(transform_test_json, 'w') as f:
-        json.dump(transform_train_dict, f)
+        json.dump(transform_val_dict, f)
