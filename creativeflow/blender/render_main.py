@@ -270,14 +270,15 @@ if __name__ == "__main__":
         # Set active camera
         bpy.context.scene.camera = cam
 
+        # Use GPUs if available
         cuda_devices, _ = bpy.context.user_preferences.addons['cycles'].preferences.get_devices()
-        print("CUDA DEVICES", cuda_devices)
         if len(cuda_devices) > 0:
-            print("CUDA DEVICES", cuda_devices)
-            print(bpy.context.user_preferences.addons['cycles'].preferences)
+            print('CUDA devices detected.', cuda_devices)
             for i in range(len(cuda_devices)):
                 cuda_devices[i].use = True
             bpy.context.user_preferences.addons['cycles'].preferences.compute_device_type = 'CUDA'
+        else:
+            print('No CUDA devices detected.')
 
         # Handle frame bounds ------------------------------------------------------
 

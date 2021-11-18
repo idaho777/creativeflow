@@ -52,7 +52,7 @@ for f in ${SDIR}*.fbx; do
             > $LOGFILE 2>&1
 
     # call pipeline with file name 
-    ./datagen/pipeline.sh -n 1 -s:0:1:2:3:8:9:10:11:14:15:17:18\
+    ./datagen/pipeline.sh -n 1 -s:0:1:2:3:8:9:10:11:18:\
             -L pen1\
             -m flat\
             $CURROBLEND\
