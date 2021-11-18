@@ -51,31 +51,29 @@ if __name__ == "__main__":
 
     orig_start = bpy.context.scene.frame_start
 
+    # Get camera attributes
+    view_dim = 2 * ((cam.data.sensor_width/2) / cam.data.lens) * 4
+    view_bounds = 0.8*view_dim
 
     # Import fbx file
+    # This is to get scale factor.  transform_apply moves the model away from the origin for some reason.
+    # Current solution is to import, get scale_factor of model to fit in camera view, delete model, and
+    # re-import the character with global_scale=scale_factor.
     bpy.ops.import_scene.fbx(
         filepath=args.fbx_file,
         axis_forward='-Y',
         axis_up='Z')
 
     model = bpy.data.objects['Armature']
-    bpy.data.armatures['Armature'].layers[1] = True     # Hide skeleton
-    bpy.data.armatures['Armature'].layers[0] = False
 
     # Get camera attributes
-    view_dim = 2 * ((cam.data.sensor_width/2) / cam.data.lens) * cam.location.length
-    view_bounds = 0.8*view_dim
 
+    bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY', center='BOUNDS')
     # Scale+translate model to fit within view box
-    max_bbox_dim = max(model.dimensions.x, model.dimensions.y)
-    scale_factor = view_bounds / max_bbox_dim
+    model.location.z = 0
+    min_bbox_dim = min(model.dimensions.x, model.dimensions.y)
+    scale_factor = view_bounds/min_bbox_dim
     model.scale = scale_factor * model.scale
-    model.location.z = model.location.z - (scale_factor*model.dimensions.y/2)
-    # model.location.z = model.location.z - (model.dimensions.y/2)
-
-    # model.select = True
-
-    # bpy.ops.object.transform_apply(location=True, scale=True)
 
     # Save new blend file
     file_name = os.path.basename(args.fbx_file)

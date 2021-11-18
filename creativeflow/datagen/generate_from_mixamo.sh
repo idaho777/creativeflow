@@ -51,7 +51,7 @@ for f in ${SDIR}*.fbx; do
             --output_blend=$CURROBLEND
             > $LOGFILE 2>&1
 
-    # call pipeline with file name 
+    call pipeline with file name 
     ./datagen/pipeline.sh -n 1 -s:0:1:2:3:8:9:10:11:18:\
             -L pen1\
             -m flat\
